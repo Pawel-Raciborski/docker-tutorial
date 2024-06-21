@@ -24,17 +24,22 @@ _container_ - is loosely isolated environment, possible to share between differe
 
 Container is isolated process for each component(frontend - Angular, backend - Spring Boot, database - each run on its own isolated environment). It contain all dependencies required to execute the contained software application.
 
+
 Each container is:
 - self-contained - have everything it needs to function
 - isolated - minimal influence on the host and other containers
 - independent - deleting one component doesn't affect other
 - portable - working anywhere
 
+
 Multiple containers share the same kernel
+- best practise is to divide containers where each container doing one thing
+
 
 ### Container vs Virtual Machines(VMs):
 
 - Both of them are virtualized(it's process in which system resources like RAM, CPU, Disk, Networking can be virtualized)
+
 
 #### Difference between container and VM:
 - VM virtualize entire machine down to hardware layer, container only virtualize layers above operating system
@@ -51,6 +56,21 @@ Multiple containers share the same kernel
 #### Important!
 - Images are immutable. Once created cannot be modified, you need to create new image
 - Images are composed of **layers**. Each layer represents set of file system changes
+
+
+#### What are image layers
+- Layer contains a set of filesystem changes - adding, removing, modify some element
+- Layers can be reused between images
+
+```dockerfile
+FROM openjdk:17-jdk-alpine
+WORKDIR /app
+COPY target/myapp-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+Each of this instructions creates layer - set of filesystem change.
 
 
 ---
@@ -75,4 +95,3 @@ _Repository_ and _Registry_ are not the same(they can be used interchangeable). 
 ### Docker Compose
 
 - it is YAML file where defining running containers
-- best practise is to divide containers where each container doing one thing
