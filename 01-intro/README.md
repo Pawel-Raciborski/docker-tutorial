@@ -4,8 +4,13 @@ It's platform that allows build, test and deploy applications quickly.
 
 Docker packages software into _containers_ that got everything the software need to run(libs, code, runtime).
 
-_container_ - is loosely isolated environment, possible to share between different OS
+_container_ - is loosely isolated environment, possible to share between different OS, package of code and dependencies to run code. Each container is independent.
+Compare container to picnic basket - it contains everything needed to run picnic
 
+## Why containers are needed?
+
+- Different Development and Production Environments causes problems - exact same environment for development and production
+- Different Development Environments Within a Team/Company - causes problems - every member should have same environment
 
 ## Docker architecture
 
@@ -23,6 +28,7 @@ _container_ - is loosely isolated environment, possible to share between differe
 #### Container
 
 Container is isolated process for each component(frontend - Angular, backend - Spring Boot, database - each run on its own isolated environment). It contain all dependencies required to execute the contained software application.
+Container is an instance of image.
 
 
 Each container is:
@@ -42,13 +48,23 @@ Multiple containers share the same kernel
 
 
 #### Difference between container and VM:
+
+##### VM:
 - VM virtualize entire machine down to hardware layer, container only virtualize layers above operating system
+- VM is like standalone computer with own system
+- VM cost of memory and process when we have multiple VMs where each VM might not use all of alocated memory - wasting space and might be slow
+- installed apps which are not needed
+
+##### Container:
+- Used shared kernel
+- lower impact on OS
 
 ---
 
 ### Image
 
-- Image includes all necesary files, binaries, libraries and configuration to run a container
+- Image includes all necesary files, binaries, libraries and configuration to run a container. Image can be run on many containers.
+
 
 ![Container runs instance of Image](../assets/images/image_and_container.png)
 
@@ -61,6 +77,8 @@ Multiple containers share the same kernel
 #### What are image layers
 - Layer contains a set of filesystem changes - adding, removing, modify some element
 - Layers can be reused between images
+- **Layers** are cached - means if some changes detected then all layers after changing later are re-build
+
 
 ```dockerfile
 FROM openjdk:17-jdk-alpine
