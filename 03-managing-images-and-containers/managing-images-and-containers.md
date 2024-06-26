@@ -61,3 +61,5 @@ First we need to create image with same name as described in command of docker r
 
 ### Pulling Docker Image
 _docker pull [imagename]_ - to pull image
+
+_docker run_ if we run some pulled image docker will not detect update automatically, we need to use _docker pull [imageName]_ to update image
