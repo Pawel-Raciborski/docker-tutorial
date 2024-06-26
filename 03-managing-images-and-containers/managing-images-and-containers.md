@@ -37,3 +37,25 @@ name(repository):tag
 
 name - is a group of images
 tag - specialized version of image
+
+---
+
+# Sharing images
+
+We can share images by:
+- Sharing Dockerfile
+- Share a Built Image(using DockerHub for example - typically this is used)
+
+We can share images on:
+- DockerHub
+- Private Registory
+
+_docker push IMAGENAME_ - used to share image
+_docker pull IMAGENAME_ - used to use image
+
+If repository is private instead of _IMAGENAME_ needs to be ***HOST:NAME***
+
+### Publish Docker Image
+
+First we need to create image with same name as described in command of docker repository. Then we can use _docker push [IMAGENAME]_ to push our image. Docker might not succesfully push our image - we need to log in.
+
