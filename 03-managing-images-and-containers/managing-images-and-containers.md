@@ -59,3 +59,5 @@ If repository is private instead of _IMAGENAME_ needs to be ***HOST:NAME***
 
 First we need to create image with same name as described in command of docker repository. Then we can use _docker push [IMAGENAME]_ to push our image. Docker might not succesfully push our image - we need to log in.
 
+### Pulling Docker Image
+_docker pull [imagename]_ - to pull image
